@@ -90,7 +90,7 @@ const Blog = () => {
         blog.id === blogId
           ? {
               ...blog,
-              comments: [...blog.comments, { id: Date.now(), text: comment }],
+              comments: [...blog.comments, { id: Date.now(), text: comment }], // Add comment to the blog
             }
           : blog
       )
@@ -103,16 +103,20 @@ const Blog = () => {
       : blogs.filter((blog) => blog.category === selectedCategory);
 
   return (
-    <div className="app-container">
-      <h1>Cybersecurity Blog</h1>
-      <div className="category-filter">
+    <div className="app-container bg-black text-white p-6">
+      <h1 className="text-4xl font-bold text-green-500 mb-6">
+        Cybersecurity Blog
+      </h1>
+      <div className="category-filter mb-6">
         <span>Filter by: </span>
         {categories.map((category) => (
           <button
             key={category}
-            className={`filter-btn ${
-              selectedCategory === category ? "active" : ""
-            }`}
+            className={`filter-btn px-4 py-2 rounded-lg text-white font-medium mr-4 ${
+              selectedCategory === category
+                ? "bg-green-500 border-2 border-green-600"
+                : "bg-transparent border-2 border-transparent hover:bg-green-500 hover:border-green-600"
+            } transition-all duration-300`}
             onClick={() => setSelectedCategory(category)}
           >
             {category.charAt(0).toUpperCase() + category.slice(1)}
